@@ -76,6 +76,12 @@ Route::get('/', function () {
             'date' => '2024-02-25',
             'note' => 'Pertemuan dengan calon pelanggan.',
             'slug' => 'pertemuan-penjualan'
+        ],
+        [
+            'title' => 'Pertemuan Penjualan',
+            'date' => '2024-02-25',
+            'note' => 'Pertemuan dengan calon pelanggan.',
+            'slug' => 'pertemuan-penjualan'
         ]
     ];
 
@@ -85,5 +91,9 @@ Route::get('/', function () {
 
 Route::get("/note/{nama}", function ($note) {
     return "ini note $note";
+});
+
+Route::get("/note/add", function ($note) {
+    return view("add_note");
 });
 
