@@ -83,10 +83,6 @@ Route::get('/', function () {
     return view('index', ["notes" => $notes]);
 });
 
-Route::get('/testing', function () {
-    return view("testing");
-});
-
 Route::get("/note/{nama}", function ($note) {
     return "ini note $note";
 });
