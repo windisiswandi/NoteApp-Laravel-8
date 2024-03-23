@@ -18,14 +18,10 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', [NoteController::class, 'index'])->name('dashboard');
-
-Route::get("/success/{slug}", function ($data) {
-    return "ini note $note";
-});
-
+Route::get("/note/detail/{slug}", [NoteController::class, 'find_note']);
 Route::get("/note/add", [NoteController::class, "form_create"])->name("form-tambah");
-Route::post("/note/create", function (Request $request) {
-    $title = $request->input('title');
-    return redirect('/success/$title');
+
+Route::post("/note/create", function () {
+    return "ok";
 })->name("create-note");
 
