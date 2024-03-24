@@ -21,7 +21,5 @@ Route::get('/', [NoteController::class, 'index'])->name('dashboard');
 Route::get("/note/detail/{slug}", [NoteController::class, 'find_note']);
 Route::get("/note/add", [NoteController::class, "form_create"])->name("form-tambah");
 
-Route::post("/note/create", function () {
-    return "ok";
-})->name("create-note");
+Route::post("/note/create", [NoteController::class, 'create'])->name("create-note");
 
