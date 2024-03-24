@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Note
 {
+
     private static $db_notes = [
         [
             'title' => 'Pertemuan dengan Klien Baru',
@@ -76,12 +77,20 @@ class Note
         ]
     ];
 
+    // function __construct() {
+    //     self::$db_notes = collect(self::$db_notes);
+    // }
+
     public static function get_all() {
-        return collect(self::$db_notes);
+        return self::$db_notes;
     }
 
     public static function find($slug) {
-        $notes = static::get_all();
-        return $notes->firstWhere('slug', $slug);
+        return self::$db_notes->firstWhere('slug', $slug);
+    }
+
+    public static function create($data) {
+        self::$db_notes[] = $data;
+        return self::$db_notes;
     }
 }
