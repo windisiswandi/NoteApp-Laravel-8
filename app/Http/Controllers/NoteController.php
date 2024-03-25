@@ -28,14 +28,14 @@ class NoteController extends Controller
     }
 
     public function form_create() {
-        return view("add_note", [
+        return view("form", [
             "title" => "Note App | Form Add",
             "purpose" => "create"
         ]);
     }
     
     public function form_update($id) {
-        return view("add_note", [
+        return view("form", [
             "title" => "Note App | Form Update",
             "purpose" => "update",
             "note" => $this->Note->firstWhere('id', $id)->toArray()

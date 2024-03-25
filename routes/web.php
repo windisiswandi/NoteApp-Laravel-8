@@ -18,8 +18,13 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', [NoteController::class, 'index'])->name('dashboard');
-Route::get("/note/detail/{slug}", [NoteController::class, 'find_note']);
-Route::get("/note/add", [NoteController::class, "form_create"])->name("form-tambah");
+Route::get("/notes/detail/{id}", [NoteController::class, 'find_note'])->name('detail-note');
+Route::get("/notes/update/{id}", [NoteController::class, 'form_update'])->name('form-update');
+Route::get("/notes/add", [NoteController::class, "form_create"])->name("form-tambah");
 
-Route::post("/note/create", [NoteController::class, 'create'])->name("create-note");
+Route::post("/note", [NoteController::class, 'create'])->name("create-note");
+
+Route::put("/note", [NoteController::class, 'update'])->name("update-note");
+
+Route::delete("/notes/{id}", [NoteController::class, 'delete'])->name('delete-note');
 
