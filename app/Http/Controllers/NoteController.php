@@ -9,40 +9,58 @@ use App\Models\Note;
 class NoteController extends Controller
 {
     function __construct() {
-        $this->Notes = new Note();
+        $this->Note = new Note();
+        date_default_timezone_set("Asia/Makassar");
     }
 
     public function index() {
         return view('index', [
             "title" => "Note APP | Dashboard",
-            "notes" => $this->Notes::get_all()
+            "notes" => $this->Note::all()->toArray()
         ]);
     }
 
-    public function find_note($slug) {
+    public function find_note($id) {
         return view('note_detail', [
             "title" => "Note APP | Detail",
-            "note" => $this->Notes::find($slug)
+            "note" => $this->Note->firstWhere('id',$id)->toArray()
         ]);
     }
 
     public function form_create() {
         return view("add_note", [
-            "title" => "Note App | Form Add"
+            "title" => "Note App | Form Add",
+            "purpose" => "create"
+        ]);
+    }
+    
+    public function form_update($id) {
+        return view("add_note", [
+            "title" => "Note App | Form Update",
+            "purpose" => "update",
+            "note" => $this->Note->firstWhere('id', $id)->toArray()
         ]);
     }
 
     public function create(Request $request) {
-        $data = [
-            "title" =>  $request->input('title'),
-            "date" => date("Y-m-d"),
-            "note" => $request->input('description'),
-            "slug" => strtolower(str_replace(' ', '-', $request->input('title')))
-        ];
+        $this->Note->title = $request->input('title');
+        $this->Note->catatan = $request->input('description');
+        $this->Note->created_at = time();
+        $this->Note->updated_at = time();
 
-        var_dump($this->Notes::create($data));
+        if ($this->Note->save()) return redirect()->route('dashboard');
+    }
 
-        // return redirect()->route('dashboard');
+    public function update(Request $request) {
+        $note = $this->Note::find($request->input('id'));
+        $note->title = $request->input('title');
+        $note->catatan = $request->input('catatan');
+        $note->updated_at = time();
 
+        if ($note->save()) return redirect()->route('dashboard');
+    }
+
+    public function delete($id) {
+        $this->Note::where('id', $id)->delete();
     }
 }
