@@ -9,21 +9,20 @@ use App\Models\Note;
 class NoteController extends Controller
 {
     function __construct() {
-        $this->Note = new Note();
         date_default_timezone_set("Asia/Makassar");
     }
 
     public function index() {
         return view('index', [
             "title" => "Note APP | Dashboard",
-            "notes" => $this->Note::all()->toArray()
+            "notes" => Note::all()
         ]);
     }
 
-    public function find_note($id) {
+    public function find_note(Note $note) {
         return view('note_detail', [
             "title" => "Note APP | Detail",
-            "note" => $this->Note->firstWhere('id',$id)->toArray()
+            "note" =>$note
         ]);
     }
 
@@ -34,33 +33,31 @@ class NoteController extends Controller
         ]);
     }
     
-    public function form_update($id) {
+    public function form_update(Note $note) {
         return view("form", [
             "title" => "Note App | Form Update",
             "purpose" => "update",
-            "note" => $this->Note->firstWhere('id', $id)->toArray()
+            "note" => $note
         ]);
     }
 
     public function create(Request $request) {
-        $this->Note->title = $request->input('title');
-        $this->Note->catatan = $request->input('description');
-        $this->Note->created_at = time();
-        $this->Note->updated_at = time();
+        $note = new Note;
+        $note->title = $request->input('title');
+        $note->catatan = $request->input('description');
 
-        if ($this->Note->save()) return redirect()->route('dashboard');
+        if ($note->save()) return redirect()->route('dashboard');
     }
 
     public function update(Request $request) {
-        $note = $this->Note::find($request->input('id'));
+        $note = Note::find($request->input('id'));
         $note->title = $request->input('title');
         $note->catatan = $request->input('catatan');
-        $note->updated_at = time();
 
         if ($note->save()) return redirect()->route('dashboard');
     }
 
     public function delete($id) {
-        $this->Note::where('id', $id)->delete();
+        Note::where('note_id', $id)->delete();
     }
 }
