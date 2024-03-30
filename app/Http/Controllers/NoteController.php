@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Note;
+use App\Models\Category;
 
 class NoteController extends Controller
 {
@@ -29,7 +30,8 @@ class NoteController extends Controller
     public function form_create() {
         return view("form", [
             "title" => "Note App | Form Add",
-            "purpose" => "create"
+            "purpose" => "create",
+            "categories" => Category::all()
         ]);
     }
     
@@ -37,7 +39,8 @@ class NoteController extends Controller
         return view("form", [
             "title" => "Note App | Form Update",
             "purpose" => "update",
-            "note" => $note
+            "note" => $note,
+            "categories" => Category::all()
         ]);
     }
 
@@ -45,6 +48,7 @@ class NoteController extends Controller
         $note = new Note;
         $note->title = $request->input('title');
         $note->catatan = $request->input('description');
+        $note->category_id = $request->input('category');
 
         if ($note->save()) return redirect()->route('dashboard');
     }
@@ -53,7 +57,8 @@ class NoteController extends Controller
         $note = Note::find($request->input('id'));
         $note->title = $request->input('title');
         $note->catatan = $request->input('catatan');
-
+        $note->category_id = $request->input('category');
+        
         if ($note->save()) return redirect()->route('dashboard');
     }
 
