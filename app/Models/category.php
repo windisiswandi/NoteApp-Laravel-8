@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class category extends Model
     public $timestamps = false;
 
     public function notes() {
-        return $this->hasMany(Note::class);
+        return $this->hasMany(Note::class, "category_id");
     }
 }
