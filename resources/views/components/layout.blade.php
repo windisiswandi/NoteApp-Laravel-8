@@ -15,7 +15,7 @@
             <div class="hidden sm:block">
                 <a href="#" class="hover:bg-white hover:text-slate-900 py-1 px-4 rounded">Home</a>
                 <a href="#" class="hover:bg-white hover:text-slate-900 py-1 px-4 rounded">About</a>
-                <a href="#" class="hover:bg-white hover:text-slate-900 py-1 px-4 rounded">Contact</a>
+                <a href="{{ route('categories') }}" class="hover:bg-white hover:text-slate-900 py-1 px-4 rounded">Category</a>
             </div>
             <a href="{{route('form-tambah')}}" class="bg-blue-700 bg-opacity-55 hover:bg-blue-800 text-white font-bold px-4 py-1 rounded focus:outline-none focus:shadow-outline hidden md:block">Add Note</a>
         </nav>

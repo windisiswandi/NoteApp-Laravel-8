@@ -18,7 +18,7 @@
 
                 <div id="menu" class="origin-top-right absolute right-0 mt-2 w-56 rounded-sm shadow-lg bg-white ring-1 ring-black ring-opacity-[0.04] hidden">
                     <!-- Opsi dropdown -->
-                    <a href="{{route('form-update', $note->note_id)}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Edit</a>
+                    <a href="{{route('form-update', $note->slug)}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Edit</a>
                     <a href='#' id="delete" data-id="{{$note->note_id}}" class="block px-4 py-2 text-sm text-red-700 hover:bg-gray-100 hover:text-red-900" role="menuitem">Delete</a>
             </div>
 
