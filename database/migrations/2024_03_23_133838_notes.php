@@ -17,7 +17,7 @@ class Notes extends Migration
             $table->id("note_id");
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->string("slug", 10)->unique();
+            $table->string("slug", 255)->unique();
             $table->string('title');
             $table->text('catatan');
             $table->timestamps();
