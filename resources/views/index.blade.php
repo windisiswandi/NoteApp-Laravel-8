@@ -8,7 +8,7 @@
             @foreach($notes as $note)
             <a href="{{ route('detail-note', $note->slug) }}" class="bg-slate-100 rounded-md shadow p-4 hover:shadow-lg hover:translate-y-[-6px] transition h-[100px]">
                 <h2 class="text-[16px] truncate font-bold">{{ $note->title }}</h2>
-                <p class="text-slate-500 text-[12px] italic">{{$note->created_at}}</p>
+                <p class="text-slate-500 text-[12px] italic">{{$note->category->name}}</p>
                 <p class="text-slate-800 text-[12px] mt-4 truncate overflow-hidden">{{$note->catatan}}</p>
             </a>
             @endforeach
