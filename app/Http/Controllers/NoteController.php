@@ -20,6 +20,7 @@ class NoteController extends Controller
         ]);
     }
 
+    // explisit route binding
     public function find_note(Note $note) {
         return view('note_detail', [
             "title" => "Note APP | Detail",
@@ -35,6 +36,7 @@ class NoteController extends Controller
         ]);
     }
     
+    // explisit route binding
     public function form_update(Note $note) {
         return view("form", [
             "title" => "Note App | Form Update",

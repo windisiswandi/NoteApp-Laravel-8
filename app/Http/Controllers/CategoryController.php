@@ -16,6 +16,7 @@ class CategoryController extends Controller
         ]);
     }
 
+    // explisit route binding
     public function categoriesById(Category $category) {
         return view('index', [
             "title" => "Note APP",

@@ -8,8 +8,8 @@
         </div>
         <div id="body" class="p-2">
             @foreach($categories as $category)
-                <a href="{{route('categoriesById', $category->slug)}}" class="px-3 py-2 font-semibold bg-slate-300 my-2 rounded-md block text-slate-700 hover:bg-slate-400 ">{{$category->name}}</a>
+                <a href="/categories/{{$category->slug}}" class="px-3 py-2 font-semibold bg-slate-300 my-2 rounded-md block text-slate-700 hover:bg-slate-400 ">{{$category->name}}</a>
             @endforeach
         </div>
     </div>
-@endsection
+@endsection 
