@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function categoriesById(Category $category) {
         return view('index', [
             "title" => "Note APP",
-            "notes" => $category->notes,
+            "notes" => $category->notes->load('category'),
             "by_category" => $category->name
         ]);
     }
